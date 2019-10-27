@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+	<!-- 输出到控制台 -->
+	<!-- <settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings> -->
+
+	<typeAliases>
+		<typeAlias alias="Customer" type="com.capi.model.Customer" />
+		<typeAlias alias="MobileData" type="com.capi.model.MobileData" />
+		<typeAlias alias="User" type="com.capi.model.User" />
+		<typeAlias alias="Statistics" type="com.capi.model.Statistics" />
+		<typeAlias alias="CityData" type="com.capi.model.CityData" />
+	</typeAliases> 
+
+	<plugins> 
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"> 
+			<property name="helperDialect" value="mysql" />
+			<property name="reasonable" value="true" />
+			<property name="pageSizeZero" value="true" />
+		</plugin> 
+	</plugins> 
+	
+	<mappers>
+		<mapper resource="com/capi/mapper/CustomerMapper.xml" />
+		<mapper resource="com/capi/mapper/MobileDataMapper.xml" />
+		<mapper resource="com/capi/mapper/UserMapper.xml" />
+		<mapper resource="com/capi/mapper/StatisticsMapper.xml" />
+		<mapper resource="com/capi/mapper/CityDataMapper.xml" />
+	</mappers>
+</configuration>

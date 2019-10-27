@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capi.dao.MobileDataMapper">
+  <resultMap id="BaseResultMap" type="com.capi.model.MobileData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mobile_prefix" jdbcType="VARCHAR" property="mobilePrefix" />
+    <result column="mobile_number" jdbcType="VARCHAR" property="mobileNumber" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="mobile_type" jdbcType="VARCHAR" property="mobileType" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="isp" jdbcType="VARCHAR" property="isp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mobile_prefix, mobile_number, province, city, mobile_type, area_code, post_code, 
+    isp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_data
+    where mobile_number like concat('%',#{mobileNumber},'%' )
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mobile_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.capi.model.MobileData">
+    insert into mobile_data (id, mobile_prefix, mobile_number, 
+      province, city, mobile_type, 
+      area_code, post_code, isp
+      )
+    values (#{id,jdbcType=INTEGER}, #{mobilePrefix,jdbcType=VARCHAR}, #{mobileNumber,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{mobileType,jdbcType=VARCHAR}, 
+      #{areaCode,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, #{isp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.capi.model.MobileData">
+    insert into mobile_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mobilePrefix != null">
+        mobile_prefix,
+      </if>
+      <if test="mobileNumber != null">
+        mobile_number,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="mobileType != null">
+        mobile_type,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="postCode != null">
+        post_code,
+      </if>
+      <if test="isp != null">
+        isp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePrefix != null">
+        #{mobilePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileType != null">
+        #{mobileType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isp != null">
+        #{isp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.capi.model.MobileData">
+    update mobile_data
+    <set>
+      <if test="mobilePrefix != null">
+        mobile_prefix = #{mobilePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileType != null">
+        mobile_type = #{mobileType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isp != null">
+        isp = #{isp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.capi.model.MobileData">
+    update mobile_data
+    set mobile_prefix = #{mobilePrefix,jdbcType=VARCHAR},
+      mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      mobile_type = #{mobileType,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      isp = #{isp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

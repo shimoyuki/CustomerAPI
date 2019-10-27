@@ -1,0 +1,1 @@
+D:/SystemProgram/MySQL/MySQL Server 5.7/bin/mysqldump --no-defaults -u root --password=kagari8243 customerapi > D:/Project/EclipseEEProject/CustomerAPI/customerapi.sql

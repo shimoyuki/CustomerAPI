@@ -1,0 +1,39 @@
+cmake . -DCMAKE_INSTALL_PREFIX=/home/library/mysql1 \
+-DMYSQL_DATADIR=/home/library/mysql1/data \
+-DMYSQL_UNIX_ADDR=/home/library/mysql1/mysql1.sock \
+-DDEFAULT_CHARSET=utf8 \
+-DDEFAULT_COLLATION=utf8_general_ci \
+-DEXTRA_CHARSETS=gbk,gb2312,utf8,ascii \
+-DENABLED_LOCAL_INFILE=ON \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_FEDERATED_STORAGE_ENGINE=1 \
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \
+-DWITHOUT_PARTITION_STORAGE_ENGINE=1 \
+-DWITH_FAST_MUTEXES=1 \
+-DWITH_ZLIB=bundled \
+-DENABLED_LOCAL_INFILE=1 \
+-DWITH_READLINE=1 \
+-DWITH_EMBEDDED_SERVER=1 \
+-DWITH_DEBUG=0 \
+-DWITH_BOOST=/home/library/boost/boost_1_59_0/
+
+make && make install
+
+chown -R mysql:mysql /home/library/mysql1/
+cp support-files/mysql.server /etc/init.d/mysqld1
+chmod 755 /etc/init.d/mysqld1
+
+chkconfig --add mysqld1
+chkconfig --level 2345 mysqld1 on
+chkconfig --list
+
+./bin/mysqld --initialize --user=mysql1 --datadir=/home/library/mysql1/data
+
+/etc/init.d/mysqld1 start
+
+mysql -uroot -p --port=3306 --protocol=TCP
+
+SET GLOBAL sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+SET SESSION sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+

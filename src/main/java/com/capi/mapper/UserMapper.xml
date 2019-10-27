@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capi.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.capi.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="channel_id" jdbcType="VARCHAR" property="channelId" />
+    <result column="ads_id1" jdbcType="VARCHAR" property="adsId1" />
+    <result column="ads_id2" jdbcType="VARCHAR" property="adsId2" />
+    <result column="dest_url" jdbcType="VARCHAR" property="destUrl" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, email, username, password, nickname, channel_id, ads_id1, ads_id2, dest_url, 
+    profile
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user where 1=1
+		<if test="username != null">and username = #{username,jdbcType=VARCHAR}</if>
+		<if test="password != null">and password = #{password,jdbcType=VARCHAR}</if>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.capi.model.User">
+    insert into user (id, email, username, 
+      password, nickname, channel_id, 
+      ads_id1, ads_id2, dest_url, 
+      profile)
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}, 
+      #{adsId1,jdbcType=VARCHAR}, #{adsId2,jdbcType=VARCHAR}, #{destUrl,jdbcType=VARCHAR}, 
+      #{profile,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.capi.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="adsId1 != null">
+        ads_id1,
+      </if>
+      <if test="adsId2 != null">
+        ads_id2,
+      </if>
+      <if test="destUrl != null">
+        dest_url,
+      </if>
+      <if test="profile != null">
+        profile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="adsId1 != null">
+        #{adsId1,jdbcType=VARCHAR},
+      </if>
+      <if test="adsId2 != null">
+        #{adsId2,jdbcType=VARCHAR},
+      </if>
+      <if test="destUrl != null">
+        #{destUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        #{profile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.capi.model.User">
+    update user
+    <set>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        channel_id = #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="adsId1 != null">
+        ads_id1 = #{adsId1,jdbcType=VARCHAR},
+      </if>
+      <if test="adsId2 != null">
+        ads_id2 = #{adsId2,jdbcType=VARCHAR},
+      </if>
+      <if test="destUrl != null">
+        dest_url = #{destUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.capi.model.User">
+    update user
+    set email = #{email,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=VARCHAR},
+      ads_id1 = #{adsId1,jdbcType=VARCHAR},
+      ads_id2 = #{adsId2,jdbcType=VARCHAR},
+      dest_url = #{destUrl,jdbcType=VARCHAR},
+      profile = #{profile,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

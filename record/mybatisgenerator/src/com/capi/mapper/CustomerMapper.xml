@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capi.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.capi.model.Customer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="gender" jdbcType="DECIMAL" property="gender" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="id_card_no" jdbcType="CHAR" property="idCardNo" />
+    <result column="demand_account" jdbcType="DECIMAL" property="demandAccount" />
+    <result column="monthly_income" jdbcType="DECIMAL" property="monthlyIncome" />
+    <result column="career_type" jdbcType="DECIMAL" property="careerType" />
+    <result column="is_has_fund" jdbcType="DECIMAL" property="isHasFund" />
+    <result column="is_has_security" jdbcType="DECIMAL" property="isHasSecurity" />
+    <result column="payroll_form" jdbcType="DECIMAL" property="payrollForm" />
+    <result column="is_had_credit" jdbcType="DECIMAL" property="isHadCredit" />
+    <result column="is_had_overdue" jdbcType="DECIMAL" property="isHadOverdue" />
+    <result column="residence_time" jdbcType="DECIMAL" property="residenceTime" />
+    <result column="house_property" jdbcType="DECIMAL" property="houseProperty" />
+    <result column="car_property" jdbcType="DECIMAL" property="carProperty" />
+    <result column="insurance_policy" jdbcType="DECIMAL" property="insurancePolicy" />
+    <result column="media_number" jdbcType="VARCHAR" property="mediaNumber" />
+    <result column="record_date" jdbcType="DATE" property="recordDate" />
+    <result column="transport_mark" jdbcType="VARCHAR" property="transportMark" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, phone, region, gender, birthday, id_card_no, demand_account, monthly_income, 
+    career_type, is_has_fund, is_has_security, payroll_form, is_had_credit, is_had_overdue, 
+    residence_time, house_property, car_property, insurance_policy, media_number, record_date, 
+    transport_mark, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.capi.model.Customer">
+    insert into customer (id, name, phone, 
+      region, gender, birthday, 
+      id_card_no, demand_account, monthly_income, 
+      career_type, is_has_fund, is_has_security, 
+      payroll_form, is_had_credit, is_had_overdue, 
+      residence_time, house_property, car_property, 
+      insurance_policy, media_number, record_date, 
+      transport_mark, create_date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{region,jdbcType=VARCHAR}, #{gender,jdbcType=DECIMAL}, #{birthday,jdbcType=VARCHAR}, 
+      #{idCardNo,jdbcType=CHAR}, #{demandAccount,jdbcType=DECIMAL}, #{monthlyIncome,jdbcType=DECIMAL}, 
+      #{careerType,jdbcType=DECIMAL}, #{isHasFund,jdbcType=DECIMAL}, #{isHasSecurity,jdbcType=DECIMAL}, 
+      #{payrollForm,jdbcType=DECIMAL}, #{isHadCredit,jdbcType=DECIMAL}, #{isHadOverdue,jdbcType=DECIMAL}, 
+      #{residenceTime,jdbcType=DECIMAL}, #{houseProperty,jdbcType=DECIMAL}, #{carProperty,jdbcType=DECIMAL}, 
+      #{insurancePolicy,jdbcType=DECIMAL}, #{mediaNumber,jdbcType=VARCHAR}, #{recordDate,jdbcType=DATE}, 
+      #{transportMark,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.capi.model.Customer">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="idCardNo != null">
+        id_card_no,
+      </if>
+      <if test="demandAccount != null">
+        demand_account,
+      </if>
+      <if test="monthlyIncome != null">
+        monthly_income,
+      </if>
+      <if test="careerType != null">
+        career_type,
+      </if>
+      <if test="isHasFund != null">
+        is_has_fund,
+      </if>
+      <if test="isHasSecurity != null">
+        is_has_security,
+      </if>
+      <if test="payrollForm != null">
+        payroll_form,
+      </if>
+      <if test="isHadCredit != null">
+        is_had_credit,
+      </if>
+      <if test="isHadOverdue != null">
+        is_had_overdue,
+      </if>
+      <if test="residenceTime != null">
+        residence_time,
+      </if>
+      <if test="houseProperty != null">
+        house_property,
+      </if>
+      <if test="carProperty != null">
+        car_property,
+      </if>
+      <if test="insurancePolicy != null">
+        insurance_policy,
+      </if>
+      <if test="mediaNumber != null">
+        media_number,
+      </if>
+      <if test="recordDate != null">
+        record_date,
+      </if>
+      <if test="transportMark != null">
+        transport_mark,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=DECIMAL},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo,jdbcType=CHAR},
+      </if>
+      <if test="demandAccount != null">
+        #{demandAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyIncome != null">
+        #{monthlyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="careerType != null">
+        #{careerType,jdbcType=DECIMAL},
+      </if>
+      <if test="isHasFund != null">
+        #{isHasFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isHasSecurity != null">
+        #{isHasSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="payrollForm != null">
+        #{payrollForm,jdbcType=DECIMAL},
+      </if>
+      <if test="isHadCredit != null">
+        #{isHadCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="isHadOverdue != null">
+        #{isHadOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="residenceTime != null">
+        #{residenceTime,jdbcType=DECIMAL},
+      </if>
+      <if test="houseProperty != null">
+        #{houseProperty,jdbcType=DECIMAL},
+      </if>
+      <if test="carProperty != null">
+        #{carProperty,jdbcType=DECIMAL},
+      </if>
+      <if test="insurancePolicy != null">
+        #{insurancePolicy,jdbcType=DECIMAL},
+      </if>
+      <if test="mediaNumber != null">
+        #{mediaNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDate != null">
+        #{recordDate,jdbcType=DATE},
+      </if>
+      <if test="transportMark != null">
+        #{transportMark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.capi.model.Customer">
+    update customer
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=DECIMAL},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        id_card_no = #{idCardNo,jdbcType=CHAR},
+      </if>
+      <if test="demandAccount != null">
+        demand_account = #{demandAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyIncome != null">
+        monthly_income = #{monthlyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="careerType != null">
+        career_type = #{careerType,jdbcType=DECIMAL},
+      </if>
+      <if test="isHasFund != null">
+        is_has_fund = #{isHasFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isHasSecurity != null">
+        is_has_security = #{isHasSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="payrollForm != null">
+        payroll_form = #{payrollForm,jdbcType=DECIMAL},
+      </if>
+      <if test="isHadCredit != null">
+        is_had_credit = #{isHadCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="isHadOverdue != null">
+        is_had_overdue = #{isHadOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="residenceTime != null">
+        residence_time = #{residenceTime,jdbcType=DECIMAL},
+      </if>
+      <if test="houseProperty != null">
+        house_property = #{houseProperty,jdbcType=DECIMAL},
+      </if>
+      <if test="carProperty != null">
+        car_property = #{carProperty,jdbcType=DECIMAL},
+      </if>
+      <if test="insurancePolicy != null">
+        insurance_policy = #{insurancePolicy,jdbcType=DECIMAL},
+      </if>
+      <if test="mediaNumber != null">
+        media_number = #{mediaNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDate != null">
+        record_date = #{recordDate,jdbcType=DATE},
+      </if>
+      <if test="transportMark != null">
+        transport_mark = #{transportMark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.capi.model.Customer">
+    update customer
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      region = #{region,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=DECIMAL},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      id_card_no = #{idCardNo,jdbcType=CHAR},
+      demand_account = #{demandAccount,jdbcType=DECIMAL},
+      monthly_income = #{monthlyIncome,jdbcType=DECIMAL},
+      career_type = #{careerType,jdbcType=DECIMAL},
+      is_has_fund = #{isHasFund,jdbcType=DECIMAL},
+      is_has_security = #{isHasSecurity,jdbcType=DECIMAL},
+      payroll_form = #{payrollForm,jdbcType=DECIMAL},
+      is_had_credit = #{isHadCredit,jdbcType=DECIMAL},
+      is_had_overdue = #{isHadOverdue,jdbcType=DECIMAL},
+      residence_time = #{residenceTime,jdbcType=DECIMAL},
+      house_property = #{houseProperty,jdbcType=DECIMAL},
+      car_property = #{carProperty,jdbcType=DECIMAL},
+      insurance_policy = #{insurancePolicy,jdbcType=DECIMAL},
+      media_number = #{mediaNumber,jdbcType=VARCHAR},
+      record_date = #{recordDate,jdbcType=DATE},
+      transport_mark = #{transportMark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

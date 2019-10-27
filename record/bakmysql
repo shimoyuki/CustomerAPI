@@ -1,0 +1,4 @@
+#备份数据库
+mysqldump -u root --password=seisou8243 CustomerAPI > /home/library/mysql_backup/3306/customerapi-$(date +'%Y%m%d').sql
+#删除7天以前的备份
+find /home/library/mysql_backup/3306/ -name "*.sql" -mtime +7 -exec rm -rf {} \;

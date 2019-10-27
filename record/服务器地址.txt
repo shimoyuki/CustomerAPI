@@ -1,0 +1,6 @@
+http://59.45.175.47:8244/CustomerAPI/
+
+注册码：Q3VzdG9tZXI=
+
+数据库备份：mysqldump -u root --port=3306 --protocol=TCP --password=seisou8243 CustomerAPI > /home/library/mysql_backup/3306/customerapi-$(date +'%Y%m%d').sql
+
